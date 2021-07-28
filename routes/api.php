@@ -19,6 +19,6 @@ Route::prefix('v1')->group(function ()
     Route::middleware(['auth:sanctum','can:isAdmin'])->group(function () {
         Route::resource('companies', \Modules\Company\Http\Controllers\CompanyController::class)->only('store', 'index');
         Route::resource('invoices', \Modules\Invoice\Http\Controllers\InvoiceController::class)->only('store','index');
-
+        Route::post('pay-invoice', [\Modules\Invoice\Http\Controllers\InvoiceController::class, 'payInvoice'])->name('pay-invoice');
     });
 });

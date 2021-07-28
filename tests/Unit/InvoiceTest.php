@@ -72,4 +72,12 @@ class InvoiceTest extends TestCase
         $this->assertEquals($feesTotalAmount, $feesTotalAmountCalculated);
     }
 
+
+    public function test_can_make_invoice_paid()
+    {
+        $invoice = Invoice::factory()->create();
+        $updated = $this->invoiceService->makeInvoicePaid($invoice->id);
+        $this->assertTrue($updated);
+    }
+
 }

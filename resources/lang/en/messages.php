@@ -10,6 +10,8 @@ return [
     'Logged' => 'Logged Successfully',
     "data_created" => 'Data Created Successfully',
     "data_retrieved" => "Data Retrieved",
-    "debtor_reach_limit" => 'The debtor reach the debt limit'
+    "debtor_reach_limit" => 'The debtor reach the debt limit',
+    "invoice_paid"=> 'The invoice paid successfully',
+    "invoice_already_paid" => 'The invoice already paid'
 
 ];

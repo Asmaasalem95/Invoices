@@ -23,7 +23,16 @@ Interface InvoiceServiceInterface
      * @param int $creditorId
      * @return bool
      */
-    public function checkDebtorLimitations(int $debtorId, int $creditorId) :bool;
-
+    public function checkDebtorLimitations(int $debtorId, int $creditorId): bool;
+    /**
+     * @param $invoiceId
+     * @return bool
+     */
+    public function makeInvoicePaid($invoiceId): bool;
+    /**
+     * @param int $invoiceId
+     * @return bool
+     */
+    public function checkIfTheInvoicePaid(int $invoiceId): bool;
 
 }

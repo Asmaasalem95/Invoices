@@ -7,6 +7,7 @@ use App\Traits\CommonMethods;
 use Illuminate\Http\Response;
 use Modules\Invoice\Contracts\InvoiceServiceInterface;
 use Modules\Invoice\Http\Requests\CreateInvoiceRequest;
+use Modules\Invoice\Http\Requests\PayInvoiceRequest;
 use Modules\Invoice\Http\Resources\InvoiceResource;
 
 class InvoiceController extends Controller
@@ -50,6 +51,25 @@ class InvoiceController extends Controller
     {    $invoices = $this->service->all();
         return $this->apiResponse(__('messages.data_retrieved'), Response::HTTP_OK, InvoiceResource::collection($invoices));
     }
+
+    /**
+     * @param PayInvoiceRequest $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function payInvoice(PayInvoiceRequest $request)
+    {
+        $invoiceId = $request->invoice_id;
+        $paidChecker = $this->service->checkIfTheInvoicePaid($invoiceId);
+        if ($paidChecker)
+        {
+            return $this->apiResponse(__('messages.invoice_already_paid'), Response::HTTP_OK, []);
+
+        }
+        $updated = $this->service->makeInvoicePaid($invoiceId);
+        return $this->apiResponse(__('messages.invoice_paid'), Response::HTTP_OK, []);
+
+    }
+
 
 
 }

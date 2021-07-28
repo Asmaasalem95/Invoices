@@ -48,7 +48,6 @@ class CreateCompanyTest extends ApiAuthTestCase
         ];
         $response = $this->createCompany($params,$headers);
         $response->assertStatus(JsonResponse::HTTP_UNPROCESSABLE_ENTITY);
-        $response->assertJson(['status' => false]);
     }
     public function test_cannot_create_creditor_company_without_limit_debtor_value()
     {
@@ -63,7 +62,6 @@ class CreateCompanyTest extends ApiAuthTestCase
         ];
         $response = $this->createCompany($params,$headers);
         $response->assertStatus(JsonResponse::HTTP_UNPROCESSABLE_ENTITY);
-        $response->assertJson(['status' => false]);
     }
     protected function createCompany($params,$headers)
     {

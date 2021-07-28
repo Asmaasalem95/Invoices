@@ -1,16 +1,14 @@
 <?php
 
-namespace Modules\Company\Http\Requests;
+namespace Modules\Invoice\Http\Requests;
 
-use App\Traits\CommonMethods;
-use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Contracts\Validation\Validator;
+use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;
-use Illuminate\Http\Response;
+use Illuminate\Http\JsonResponse;
 
-class CreateCompanyRequest extends FormRequest
+class PayInvoiceRequest extends FormRequest
 {
-    use CommonMethods;
     /**
      * Determine if the user is authorized to make this request.
      *
@@ -29,9 +27,7 @@ class CreateCompanyRequest extends FormRequest
     public function rules()
     {
         return [
-            'name'=> 'required|string',
-            'type' => 'required|in:debtor,creditor',
-            'debtor_total_limit' => 'required_if:type,creditor|numeric'
+            'invoice_id' => 'required|integer|exists:invoices,id'
         ];
     }
     /** override failedValidation function to customize the validation api response
@@ -39,8 +35,10 @@ class CreateCompanyRequest extends FormRequest
      */
     protected function failedValidation(Validator $validator)
     {
-        throw new HttpResponseException(
-            $this->apiResponse(__('messages.invalid_inputs'), Response::HTTP_UNPROCESSABLE_ENTITY, $validator->errors()->all())
-        );
+        throw new HttpResponseException(response()->json([
+            'status' => false,
+            'message' => 'Invalid inputs!',
+            'data' => $validator->errors()->all(),
+        ])->setStatusCode(JsonResponse::HTTP_UNPROCESSABLE_ENTITY));
     }
 }
