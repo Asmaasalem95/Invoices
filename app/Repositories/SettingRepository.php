@@ -3,7 +3,7 @@
 
 namespace App\Repositories;
 use App\Models\GlobalSetting;
-
+use Illuminate\Database\Eloquent\Model;
 class SettingRepository extends BaseRepository
 {
 

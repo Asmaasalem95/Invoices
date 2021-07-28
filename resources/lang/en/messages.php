@@ -9,6 +9,7 @@ return [
     'unauthorized' => 'Not Authorized.',
     'Logged' => 'Logged Successfully',
     "data_created" => 'Data Created Successfully',
-    "data_retrieved" => "Data Retrieved"
+    "data_retrieved" => "Data Retrieved",
+    "debtor_reach_limit" => 'The debtor reach the debt limit'
 
 ];
