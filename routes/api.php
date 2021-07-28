@@ -16,4 +16,7 @@ use Illuminate\Support\Facades\Route;
 Route::prefix('v1')->group(function ()
 {
     Route::post('login', [\Modules\User\Http\Controllers\LoginController::class,'login'])->name('login');
+    Route::middleware(['auth:sanctum','can:isAdmin'])->group(function () {
+        Route::resource('companies', \Modules\Company\Http\Controllers\CompanyController::class)->only('store', 'index');
+    });
 });

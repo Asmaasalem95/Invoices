@@ -6,6 +6,9 @@ return [
     'email_not_found' => 'Failed! email not found.',
     'invalid_password' => 'Whoops! invalid password.',
     'unauthenticated'=>'Unauthenticated',
-    'Logged' => 'Logged Successfully'
+    'unauthorized' => 'Not Authorized.',
+    'Logged' => 'Logged Successfully',
+    "data_created" => 'Data Created Successfully',
+    "data_retrieved" => "Data Retrieved"
 
 ];
